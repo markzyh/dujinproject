@@ -1,0 +1,68 @@
+﻿/* 清除内外边距*/
+*{margin: 0px;padding: 0px;}
+body { font-size:14px; color:#333; font-family:'Microsoft YaHei';}
+/* 设置默认字体*/body, button, input, select, textarea{/* for ie*//*font: 12px/1 Tahoma, Helvetica, Arial, "宋体", sans-serif;*//* font: 12px/1 "微软雅黑";*//*Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;*//* 用 ascii 字符表示，使得在任何编码下都无问题*/}
+h1{font-size: 18px;/* 18px / 12px = 1.5*/}
+h2{font-size: 16px;}
+h3{font-size: 14px;}
+h4, h5, h6{font-size: 100%;}
+.fl{float: left;}
+.fr{float: right;}
+.cl{zoom: 1;}
+.cl:after{height: 0;display: block;content: "\20";clear: both;}
+address, cite, dfn, em, var{font-style: normal;}
+/* 将斜体扶正*/code, kbd, pre, samp, tt{font-family: "Courier New", Courier, monospace;}
+/* 统一等宽字体*/small{font-size: 12px;}
+/* 小于 12px 的中文很难阅读，让 small 正常化*//* 重置列表元素*/ul, ol{list-style: none;}
+/* 重置文本格式元素*/
+a{color: #333333;text-decoration: none;}
+a:hover{color: #333333;text-decoration: none;}
+abbr[title], acronym[title]{/* 注：1.ie6 不支持 abbr;2.这里用了属性选择符，ie6 下无效果*/border-bottom: 1px dotted;cursor: help;}
+q:before, q:after{content: '';}
+/* 重置表单元素*/legend{color: #000;}
+/* for ie6*/fieldset, img{border: none;}
+/* img 搭车：让链接里的 img 无边框*//* 注：optgroup 无法扶正*/button, input, select, textarea{font-size: 100%;/* 使得表单元素在 ie 下能继承字体大小*/}
+/* 重置表格元素*/table{border-collapse: collapse;border-spacing: 0;}
+/* 重置 hr*/hr{border: none;height: 1px;}
+/* 让非ie浏览器默认也显示垂直滚动条，防止因滚动条引起的闪烁*/html{overflow-y: scroll;}
+.mara{margin: auto;}
+/*头部*/
+#header2{position:fixed;width:100%;top:0;left:0px;height:86px;z-index:10;background:#fff;border-bottom: 1px solid #ebebeb;text-align: center;}
+#header2:hover{opacity: 1 !important;}
+#headerinner{width:52%;overflow: hidden;/*border:1px solid #000;*/display: inline-block;}
+.header_logo{float: left;margin-left: 2%;}
+.header_phone{float: right;margin-right: 2%;}
+#header2 #logo{float:left;position:relative;width:225px;height:37px;}
+#header2 #logo img{position:absolute;top:24px;left:0px;}
+#header2 #mainmenu{float:left;}
+#header2 #mainmenu ul{float:left;width:100%;}
+#header2 #mainmenu ul li{position:relative;float:left;font-size:16px;margin-left:40px;line-height: 80px;}
+#header2 #mainmenu ul li:first-child{margin-left: 0;}
+#header2 #mainmenu ul li a{float:left;color:#000;text-decoration: none;display:block;}
+#header2 #mainmenu ul li.active{color:#ffffff;background: #2893e7;padding:0 14px;}
+#header2 #mainmenu ul li.active a{color:#fff;}
+#header2 #mainmenu ul li:hover{color:#ffffff;background: #2893e7;padding:0 14px;}
+#header2 #mainmenu ul li:hover a{color:#fff;}
+#header2 #mainmenu ul li span{position:absolute;bottom:0px;left:50%;float:left;display:block;margin-top:2px;width:0px;height:2px;background:#2392e8;}
+#header2 .zhuce{float: right;color:#666666;margin-top:30px;}
+#header2 .zhuce a{color:#666666;}
+#header2 .zhuce img{margin-left:25px;margin-bottom:-3px;}
+/*底部*/
+.foonter_dya {background: url(../images/team_14.jpg) no-repeat center;background-size:100% 320px;width: 100%;height: 320px;min-width:1600px;margin: 0 auto;}
+.foonter_dyb {width: 1300px; height: 320px;    min-width: 1200px;}
+.foonter_dyd {font-size: 22px;color: #c8dbe9;}
+.foonter_dyc {margin-top: 139px; margin-right: 114px;}
+.foonter_dyd img{vertical-align: middle;}
+.foonter_dye {font-size: 16px;color: #c8dbe9; margin-top: 12px;}
+.foonter_dyf {width:225px; margin-top:60px;} 
+.foonter_dyf h4{font-size: 16px; color: #6493ff;font-weight: normal; margin-bottom: 20px;margin-left: -4px;}
+.foonter_dyf ul a{font-size: 14px;color: #c8dbe9; display: block; margin-top: 15px;}
+p.foonter_dyg{color: #c8dbe9; margin-top: 20px; margin-bottom: 6px;}
+.foonter_dyh{ box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box; padding-top: 158px; background: url(../images/team_08.jpg) no-repeat center;background-size:154px 188px;width: 154px;height: 188px;font-size: 14px; color: #29242c; text-align: center; margin: 73px 15px 0px 0px;}
+
+@media screen and (max-width: 1600px){
+	#header2 #mainmenu ul li{margin-left: 20px;}
+	#header2 #mainmenu ul li a{font-size: 16px;}
+	.header_phone,.header_logo,headerinner{transform: scale(0.9)}
+}
+

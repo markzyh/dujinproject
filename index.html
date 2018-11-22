@@ -1,0 +1,64 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>生成订单</title>
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <link href="css/public.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/vue-2.x.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div class="create_box" id="create_box" >
+        <h3 class="create_title">生成订单</h3>
+        <form action="" class="create_order_form">
+            <div class="order_link">
+                <label for="order_link">
+                    投放内容
+                </label>
+                <input type="text" id="order_link" name="order_link"  v-model="orderLink" class="order_link_value" @focus="inputFocus" @blur="inputBlur"/>
+            </div>
+            <div class="order_type">
+                <label for="order_typename">
+                    把视频推荐给潜在兴趣用户
+                    <div class="create_order_tips"><img src="images/create_order_tips.png" alt="" class="order_tips_icon">
+                        <div class="order_tips_description"><img src="images/order_tips_description_tri.jpg" alt="" class="order_tips_description_tri"><b>把视频推荐给潜在兴趣用户</b>将视频展现给推荐流更多潜在兴趣用户，提升视频的播放量。</div>
+                    </div>
+                </label>
+                <div class="order_typename_group" v-for="(item,index) in orderTypeLists" :key="index">
+                    <input type="radio" name="orderType" v-model="orderTypeName" :class="{radio_checked:nowIndex === index}" @click="chooseOrderType(index)"/><span>{{item.name}}
+                        <img src="images/order_tips_description_tri.jpg" alt="" class="order_tips_description_tri" v-if="nowIndex === index && nowIndex != 0" :class="{show:nowIndex === index}">
+                    </span>
+                    <transition name="show"> 
+                        <div class="customtype_form" v-if="nowIndex === index && nowIndex != 0" :class="{show:nowIndex === index}">
+                            <!-- <div class="customtype_form"> -->
+                            <label for="sex">性别（单选）:<span v-for="(item,index) in sexLists" :key="index" :class="{checked:userSexIndex === index}" @click="chooseParmas(index,'userSexIndex')">{{item}}</span></label>
+                            <label for="sex">年龄（多选）:<span v-for="(item,index) in ageLists" :key="index" :class="{checked:userAgeIndex.indexOf(index) != -1}" @click="chooseAge(index)">{{item}}</span></label>
+                            <label for="sex">地域（单选）:<span v-for="(item,index) in regionLists" :key="index" :class="{checked:userRegionIndex === index}" @click="chooseRegion(index,'userRegionIndex')">{{item}}</span></label>
+                        </div>
+                    </transition>
+
+                </div>
+                <div v-if="isShowProvince" @click="chooseProvice" v-for="(item,index) in proviceLists">{{item.name}}</div>
+            </div>
+            <div class="order_increment">
+                <label for="order_increment">
+                    预计播放量提升
+                    <div class="create_order_tips"><img src="images/create_order_tips.png" alt="" class="order_tips_icon">
+                        <div class="order_tips_description"><img src="images/order_tips_description_tri.jpg" alt="" class="order_tips_description_tri"><b>预计播放量</b>自定义投放设置越精准，投放成本越高，系统将会根据您的自定义投放设置实时估算预计播放量。</div>   
+                    </div>
+                    <div class="order_increment_number"><span>5000</span>+</div>
+                </label>
+            </div>
+            <div class="order_price">
+                
+            </div>
+        </form>
+    </div>
+    <script src="js/create-order.js"></script>
+</body>
+
+</html>

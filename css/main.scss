@@ -286,6 +286,7 @@ input[type='radio']{
 	left: 50%;
 	margin-left: -220px;
 	padding-bottom: 20px;
+	z-index: 99;
 	h3{
 		font-weight: normal;
 		font-size: 16px;
@@ -355,4 +356,92 @@ input[type='radio']{
 	background: #eb5169;
 	margin:20px auto 0;
 	cursor: pointer;
+}
+.order_choosed_params{
+	font-size: 16px;
+	color: #999;
+	margin-left: 30px;
+	margin-top: 18px;
+	span{
+		display: inline-block;
+		//width: 66px;
+		padding:2px 6px;
+		line-height: 26px;
+		text-align: center;
+		color: #999;
+		border: 1px solid #d5d5d5;
+		margin-left: 14px;
+		text-indent: 0;
+		cursor: pointer;
+	}
+}
+.order_price{
+	.customtype_form{
+		width: 284px;
+		margin-left: -76px;
+		h3{
+			font-size: 16px;
+			color: #666;
+			margin-top: 16px;
+		}
+		input{
+			width: 240px;height: 32px;line-height: 32px;
+			margin:20px auto 10px;
+			background: #f5f5f5;color: #dadada;
+			padding-left: 6px;
+		}
+		h6{
+			font-weight: normal;font-size: 13px;
+			color: #666;
+		}
+		h5{
+			width: 80px;height: 26px;
+			line-height: 26px;
+			color: #fff;
+			margin:16px auto 0;
+			background: #eb5169;text-align: center;
+			font-size: 16px;
+			cursor: pointer;
+		}
+	}
+}
+.order_price_auto{
+	overflow: hidden;
+	li{
+		float: left;
+		cursor: pointer;
+		font-size: 16px;color: #999;
+		padding:2px 14px;
+		border: 1px solid #d5d5d5;
+		margin-left: 34px;
+		margin-top: 24px;
+		&.checked{
+			color: #eb5169;
+			border: 1px solid;
+		}
+	}
+}
+.order_price_auto_number{
+	width: 950px;
+	height: 82px;
+	line-height: 82px;
+	background: #f5f5f5;
+	font-size: 16px;
+	padding-left: 33px;
+	margin:30px 0;
+	b{
+		font-weight: normal;
+		font-size: 24px;
+		color: #eb5169;
+	}
+}
+.confirm_order{
+	font-size: 20px;
+	color: #fff;
+	cursor: pointer;width: 180px;height: 52px;
+	line-height: 52px;
+	text-align: center;
+	margin:40px auto;
+	background: #eb5169;
+	@include border-radius(5px)
 }

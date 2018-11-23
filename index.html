@@ -12,73 +12,138 @@
 </head>
 
 <body>
-    <div class="create_box" id="create_box" >
+    <div class="create_box" id="create_box">
         <h3 class="create_title">生成订单</h3>
         <form action="" class="create_order_form">
             <div class="order_link">
                 <label for="order_link">
                     投放内容
                 </label>
-                <input type="text" id="order_link" name="order_link"  v-model="orderLink" class="order_link_value" @focus="inputFocus" @blur="inputBlur"/>
+                <input type="text" id="order_link" name="order_link" v-model="orderLink" class="order_link_value"
+                    @focus="inputFocus" @blur="inputBlur" />
             </div>
             <div class="order_type">
                 <label for="order_typename">
                     把视频推荐给潜在兴趣用户
                     <div class="create_order_tips"><img src="images/create_order_tips.png" alt="" class="order_tips_icon">
-                        <div class="order_tips_description"><img src="images/order_tips_description_tri.jpg" alt="" class="order_tips_description_tri"><b>把视频推荐给潜在兴趣用户</b>将视频展现给推荐流更多潜在兴趣用户，提升视频的播放量。</div>
+                        <div class="order_tips_description"><img src="images/order_tips_description_tri.jpg" alt=""
+                                class="order_tips_description_tri"><b>把视频推荐给潜在兴趣用户</b>将视频展现给推荐流更多潜在兴趣用户，提升视频的播放量。</div>
                     </div>
                 </label>
                 <div class="order_typename_group" v-for="(item,index) in orderTypeLists" :key="index">
-                    <input type="radio" name="orderType" v-model="orderTypeName" :class="{radio_checked:nowIndex === index}" @click="chooseOrderType(index)"/><span>{{item.name}}
-                        <img src="images/order_tips_description_tri.jpg" alt="" class="order_tips_description_tri" v-if="nowIndex === index && nowIndex != 0" :class="{show:nowIndex === index}">
+                    <input type="radio" name="orderType" v-model="orderTypeName" :class="{radio_checked:nowIndex === index}"
+                        @click="chooseOrderType(index)" /><span>{{item.name}}
+                        <img src="images/order_tips_description_tri.jpg" alt="" class="order_tips_description_tri" v-if="nowIndex === index && nowIndex != 0"
+                            :class="{show:nowIndex === index}">
                     </span>
-                    <transition name="show"> 
+                    <transition name="show">
                         <div class="customtype_form" v-if="nowIndex === index && nowIndex != 0" :class="{show:nowIndex === index}">
                             <!-- <div class="customtype_form"> -->
-                            <div  class="customtype_form_group">性别（单选）:<div v-for="(item,index) in sexLists" :key="index" :class="{checked:userSexIndex === index}" @click="chooseParmas(index,'userSexIndex')" class="customtype_form_btn">{{item}}</div></div>
-                            <div  class="customtype_form_group" >年龄（多选）:<div v-for="(item,index) in ageLists" :key="index" :class="{checked:userAgeIndex.indexOf(index) != -1}" @click="chooseAge(index)" class="customtype_form_btn">{{item}}</div></div>
-                            <div  class="customtype_form_group" >
-                                地域（单选）:<div v-for="(item,index) in regionLists" :key="index"  @click="chooseRegion(index,'userRegionIndex')" class="region_btn_pos"><div class="customtype_form_btn" :class="{checked:userRegionIndex === index}">{{item}}</div>
-                                        <div class="order_provice" v-if="isShowProvince && userRegionIndex === index" ><img src="images/order_tips_description_tri.jpg" alt="" class="order_tips_description_tri">
-                                            <h3>按省市选择</h3>
-                                            <div class="provice_name_lists">
-                                                <div v-for="(item,index) in proviceLists" :key="index" class="provice_name"><b @click="chooseProvice(index)" :class="{checked:chooseProviceIndex === index}">{{item.name}}</b>
-                                                </div>
-                                            </div>
-                                            <div class="provice_cities">
-                                                    <!-- 市 -->
-                                                    <div class="" v-for="(item,index) in proviceLists" :key="index" v-if="chooseProviceIndex === index">
-                                                        <span @click="chooseAll(index,'cities')">全部</span>
-                                                        <span v-for="(items,index) in item.cities" :key="index" :class="{checked:choosecitiesArray.indexOf(index) != -1}" @click="chooseCities(index)">{{items.name}}</span>
-                                                    </div>
-                                                    <!-- <span>南京市</span><span>南京市</span><span>南京市</span><span>南京市</span> -->
-                                            </div> 
-                                            <div class="region_choosed">
-                                                    已选：{{choosedValue}}<!-- <span v-for="(item,index) in "></span>  --> 
-                                            </div>
-                                            <div class="confirm_provice" @click="confirmProvice">
-                                                    确定
+                            <div class="customtype_form_group">性别（单选）:
+                                <div v-for="(item,index) in sexLists" :key="index" :class="{checked:userSexIndex === index}"
+                                    @click="chooseParmas(index,'userSexIndex','sexLists')" class="customtype_form_btn">{{item}}</div>
+                            </div>
+                            <div class="customtype_form_group">年龄（多选）:
+                                <div v-for="(item,index) in ageLists" :key="index" :class="{checked:userAgeIndex.indexOf(index) != -1}"
+                                    @click="chooseAge(index)" class="customtype_form_btn">{{item}}</div>
+                            </div>
+                            <div class="customtype_form_group">
+                                地域（单选）:
+                                <div v-for="(item,index) in regionLists" :key="index" class="region_btn_pos">
+                                    <div class="customtype_form_btn" :class="{checked:userRegionIndex === index}"
+                                        @click="chooseRegion(index,'userRegionIndex','regionLists')">{{item}}</div>
+                                    <div class="order_provice" v-if="isShowProvince && userRegionIndex === index"><img
+                                            src="images/order_tips_description_tri.jpg" alt="" class="order_tips_description_tri">
+                                        <h3>{{chooseRegionTitle}}</h3>
+                                        <!-- 省部分 -->
+                                        <div class="provice_name_lists">
+                                            <div v-for="(item,index) in proviceLists" :key="index" class="provice_name"><b
+                                                    @click="chooseProvice(index)" :class="{checked:chooseProviceIndex === index}">{{item.name}}</b>
                                             </div>
                                         </div>
+                                        <!-- 市区部分 -->
+                                        <div class="provice_cities">
+                                            <!-- 市 -->
+                                            <div class="" v-for="(item,index) in proviceLists" :key="index" v-if="chooseProviceIndex === index">
+                                                <span @click="chooseAll(index,'cities')" v-if="!ischooseCitiesRadio">全部</span>
+                                                <span v-for="(items,index) in item.cities" :key="index" :class="{checked:choosecitiesArray.indexOf(index) != -1 }"
+                                                    @click="chooseCities(index)" v-if="!ischooseCitiesRadio">{{items.name}}</span>
+                                                <span v-for="(items,index) in item.cities" :key="index" :class="{checked:chooseCitiesIndex === index}"
+                                                    @click="chooseCities(index)" v-if="ischooseCitiesRadio">{{items.name}}</span>
+                                            </div>
+                                        </div>
+                                        <!-- 区县部分 -->
+                                        <div class="provice_area provice_cities" v-if="index === 2 || index === 3">
+                                            <div class="dis-inline provice" v-for="(item,index) in proviceLists"  v-if="chooseProviceIndex === index">
+                                                <div class="dis-inline cities" v-for="(cities,indexs) in item.cities" v-if="chooseCitiesIndex === indexs">
+                                                    <span @click="chooseAll(indexs,'counties')" v-if="!ischooseCountiesRadio">全部区县</span>
+                                                    <!-- 多选部分 -->
+                                                    <span v-if="!ischooseCountiesRadio" v-for="(counties,index) in cities.counties"  :class="{checked:chooseCountiesArray.indexOf(index) != -1}" @click="chooseCounties(index)">
+                                                                {{counties.name}}
+                                                    </span>
+                                                    <!-- 单选部分 -->
+                                                    <span v-if="ischooseCountiesRadio" v-for="(counties,index) in cities.counties"  :class="{checked:chooseCountiesIndex === index}" @click="chooseCounties(index)">
+                                                            {{counties.name}}
+                                                </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- 商圈部分 -->
+                                        <div class="provice_area provice_cities" v-if="index === 3">
+                                                <div class="dis-inline provice" v-for="(item,index) in proviceLists"  v-if="chooseProviceIndex === index">
+                                                    <div class="dis-inline cities" v-for="(cities,index) in item.cities" v-if="chooseCitiesIndex === index">
+                                                        <div class="dis-inline counties" v-for="(counties,index) in cities.counties" v-if="chooseCountiesIndex === index">
+                                                            <span @click="chooseAll(index,'circles')">全部商圈</span>
+                                                            <span class="dis-inline circles" v-for="(circles,index) in counties.circles" :class="{checked:chooseCirclesArray.indexOf(index) != -1}" @click="chooseCircles(index)">
+                                                                        {{circles.name}}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <div class="region_choosed">
+                                            已选：{{choosedValue}}
+                                            <!-- <span v-for="(item,index) in "></span>  -->
+                                        </div>
+                                        <div class="confirm_provice" @click="confirmProvice(index)">
+                                            确定
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </transition>
                 </div>
-                
+            </div>
+            <div class="order_choosed_params" v-if="isShowDefaultValue">
+                已选择<span>性别 : {{choosedSex}}</span><span>年龄 : {{choosedAge.toString()}}</span><span>地域 :
+                    {{choosedValue}}</span>
             </div>
             <div class="order_increment">
                 <label for="order_increment">
                     预计播放量提升
                     <div class="create_order_tips"><img src="images/create_order_tips.png" alt="" class="order_tips_icon">
-                        <div class="order_tips_description"><img src="images/order_tips_description_tri.jpg" alt="" class="order_tips_description_tri"><b>预计播放量</b>自定义投放设置越精准，投放成本越高，系统将会根据您的自定义投放设置实时估算预计播放量。</div>   
+                        <div class="order_tips_description"><img src="images/order_tips_description_tri.jpg" alt=""
+                                class="order_tips_description_tri"><b>预计播放量</b>自定义投放设置越精准，投放成本越高，系统将会根据您的自定义投放设置实时估算预计播放量。</div>
                     </div>
                     <div class="order_increment_number"><span>5000</span>+</div>
                 </label>
             </div>
             <div class="order_price">
-                
+                <div class="order_typename_group" v-for="(item,index) in PayLists">
+                    <input type="radio" name="orderType"  :class="{radio_checked:nowPayIndex === index}" @click="choosePayNumber(index)"><span>{{item.name}}<img src="images/order_tips_description_tri.jpg" alt="" class="order_tips_description_tri show"  v-if="nowPayIndex === 1 &&index === 1"></span>
+                    <div class="customtype_form show"  v-if="nowPayIndex === 1 && index === 1">
+                        <h3>自定义金额</h3>
+                        <input v-model="customPayNumber" @focus="inputFocus" @blur="inputBlur">
+                        <h6>金额在100~500000之间，且为10的倍数</h6>
+                        <h5 @click="confirmCustomPay">确定</h5>
+                    </div>
+                </div>
+                <ul class="order_price_auto" v-if="nowPayIndex === 0"><li v-for="(item,index) in payNumberList" :class="{checked:nowPayAutoIndex === index}" @click="choosePayAuto(index)">{{item.name}}</li></ul>
+
+                <p class="order_price_auto_number">投放金额：<b>¥ {{payNumberValue}}</b></p>
             </div>
+            <div class="confirm_order" @click="confirmOrder">支付</div>
         </form>
     </div>
     <div style="margin-bottom: 1000px;"></div>

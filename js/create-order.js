@@ -18,6 +18,7 @@ var app = new Vue({
     choosedValue:'北京市-北京市',//已经选择
     isShowCustomForm:true,
     isShowProvince:false,
+    isShowProvinceTrueIndex:false,
     orderTypeLists:[
         {
             name:'系统智能投放',
@@ -38,6 +39,10 @@ var app = new Vue({
     proviceLists:[]
   },
   methods:{
+    confirmProvice:function(){
+        this.isShowProvince = false
+        console.log(this.isShowProvince)
+    },
     getChoosedValue:function(){
         //console.log(this.chooseProviceIndex+'index')
         var choosedProvice = this.proviceLists[this.chooseProviceIndex].name//省

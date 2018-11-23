@@ -39,14 +39,10 @@
                             <div  class="customtype_form_group" >年龄（多选）:<div v-for="(item,index) in ageLists" :key="index" :class="{checked:userAgeIndex.indexOf(index) != -1}" @click="chooseAge(index)" class="customtype_form_btn">{{item}}</div></div>
                             <div  class="customtype_form_group" >
                                 地域（单选）:<div v-for="(item,index) in regionLists" :key="index"  @click="chooseRegion(index,'userRegionIndex')" class="region_btn_pos"><div class="customtype_form_btn" :class="{checked:userRegionIndex === index}">{{item}}</div>
-                                        <div class="order_provice" v-if="isShowProvince && index === 1" ><img src="images/order_tips_description_tri.jpg" alt="" class="order_tips_description_tri">
+                                        <div class="order_provice" v-if="isShowProvince && userRegionIndex === index" ><img src="images/order_tips_description_tri.jpg" alt="" class="order_tips_description_tri">
                                             <h3>按省市选择</h3>
                                             <div class="provice_name_lists">
                                                 <div v-for="(item,index) in proviceLists" :key="index" class="provice_name"><b @click="chooseProvice(index)" :class="{checked:chooseProviceIndex === index}">{{item.name}}</b>
-                                                     <!-- <div class="provice_cities">
-                                                        <span v-for="(items,index) in item.cities" :key="index" v-if="clickProviceIndex == index">{{items.name}}</span>
-                                                        <span v-if="index === 0">南京市南京市南京市南京市南京市南京市</span>
-                                                    </div>  -->
                                                 </div>
                                             </div>
                                             <div class="provice_cities">
@@ -60,28 +56,15 @@
                                             <div class="region_choosed">
                                                     已选：{{choosedValue}}<!-- <span v-for="(item,index) in "></span>  --> 
                                             </div>
-                                        </div>
-                                        <!-- <div class="order_provice" v-if="isShowProvince && index === 1" ><img src="images/order_tips_description_tri.jpg" alt="" class="order_tips_description_tri">
-                                            <h3>按省市选择</h3>
-                                            <div class="provice_name_lists">
-                                                <div class="provice_name">江苏<div class="provice_cities">
-                                                            <span style="color:#ff0000">南京市</span>
-                                                            <span style="color:#ff0000">南京市</span>
-                                                            <span style="color:#ff0000">南京市</span>
-                                                            <span style="color:#ff0000">南京市</span>
-                                                            <span style="color:#ff0000">南京市</span>
-                                                        </div> 
-                                                </div>
+                                            <div class="confirm_provice" @click="confirmProvice">
+                                                    确定
                                             </div>
-                                        </div> -->
+                                        </div>
                                 </div>
-                                
                             </div>
                         </div>
                     </transition>
-
                 </div>
-                <!-- <div v-if="isShowProvince" @click="chooseProvice" v-for="(item,index) in proviceLists">{{item.name}}</div> -->
                 
             </div>
             <div class="order_increment">
